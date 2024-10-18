@@ -56,7 +56,7 @@ public:
     static double Task1main(double x, double a);
     static bool Task2main(double x, double y);
     static int Task3main(double& a, double& b, double& c);
-    static int Task4();
+    static TriangleParams Task4main(int n, double l);
     static int Task5main(int n);
 
 private:
@@ -76,11 +76,11 @@ private:
     static int Task3();
     static int Task3inputHandling(double& a, double& b, double& c);
 
+    static int Task4();
     static int Task4c();
     static int Task4inputHandling(int& n, double& l);
     static int Task4inputN(int& n);
     static int Task4inputL(double& l);
-    static TriangleParams Task4main(int n, double l);
 
     static int Task5();
     static int Task5inputHandling(int& n);

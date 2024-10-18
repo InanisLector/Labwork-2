@@ -262,7 +262,7 @@ TriangleParams lw2::Task4main(int n, double l) {
 
     triangle.leg = sqrt(triangle.area);
     triangle.hypothenus = sqrt(triangle.area * 2);
-    triangle.height = sqrt(triangle.area * 0.5);
+    triangle.height = triangle.hypothenus * 0.5;
 
     return triangle;
 }
