@@ -82,17 +82,6 @@ double lw2::Task1main(double x, double a) {
     return Task1e(x, a);
 }
 
-double lw2::Task1l(double x, double a) {
-    if (x == 1) // to avoid -0 edge case
-        return 0; // Gotta document this is a lwd
-
-    return log(x) / log(a);
-}
-
-double lw2::Task1e(double x, double a) {
-    return exp(a * x * x);
-}
-
 int lw2::Task1inputHandling(double& x, double& a) {
     int invalidInputCount = 0;
 
@@ -118,6 +107,17 @@ int lw2::Task1inputA(double& a)
     return NO_EXCEPTION;
 }
 
+double lw2::Task1l(double x, double a) {
+    if (x == 1) // to avoid -0 edge case
+        return 0;
+
+    return log(x) / log(a);
+}
+
+double lw2::Task1e(double x, double a) {
+    return exp(a * x * x);
+}
+
 #pragma endregion
 
 #pragma region Task 2
@@ -126,7 +126,8 @@ int lw2::Task2() {
     double x, y;
     Task2inputHandling(x, y);
 
-    cout << endl << Task2main(x, y) << endl;
+    if(Task2main(x, y))
+        cout << endl << "Belongs to the region" << endl;
 
     return NO_EXCEPTION;
 }
@@ -173,11 +174,11 @@ int lw2::Task3inputHandling(double& a, double& b, double& c)
 }
 
 int lw2::Task3main(double& a, double& b, double& c) {
-    if (a > b)
+    if (a < b)
         swap(a, b);
-    if (b > c)
+    if (b < c)
         swap(b, c);
-    if (a > b)
+    if (a < b)
         swap(a, b);
     return NO_EXCEPTION;
 }
@@ -192,7 +193,7 @@ int lw2::Task4() {
     Task4inputHandling(n, l);
     TriangleParams triangleP = Task4main(n, l);
 
-    cout << endl << "Separate function\nLeg - " << triangleP.leg << "\nHypothenus - " << triangleP.hypothenus << "\nHeight - " << triangleP.height << "\nArea - " << triangleP.area << endl;
+    cout << endl << "Separate function\nLeg - " << triangleP.leg << "\nHypothenus - " << triangleP.hypotenus << "\nHeight - " << triangleP.height << "\nArea - " << triangleP.area << endl;
 
     return NO_EXCEPTION;
 }
@@ -203,10 +204,11 @@ int lw2::Task4c() {
     Task4inputHandling(n, l);
     Triangle triangle(n, l);
 
-    cout << endl << "Constructor\nLeg - " << triangle.leg << "\nHypothenus - " << triangle.hypothenus << "\nHeight - " << triangle.height << "\nArea - " << triangle.area << endl;
+    cout << endl << "Constructor\nLeg - " << triangle.leg << "\nHypothenus - " << triangle.hypotenus << "\nHeight - " << triangle.height << "\nArea - " << triangle.area << endl;
 
     return NO_EXCEPTION;
 }
+
 int lw2::Task4inputHandling(int& n, double& l) {
     int invalidInputCount = 0;
 
@@ -221,6 +223,7 @@ int lw2::Task4inputHandling(int& n, double& l) {
 
     return invalidInputCount;
 }
+
 int lw2::Task4inputN(int& n) {
     cout << "Input the measured part number\n1) Leg\n2) Hypothenus\n3) Height to hypothenus\n4) Area\nInput: ";
     cin >> n;
@@ -230,6 +233,7 @@ int lw2::Task4inputN(int& n) {
 
     return NO_EXCEPTION;
 }
+
 int lw2::Task4inputL(double& l) {
     cout << "Input length of selected part: ";
     cin >> l;
@@ -239,6 +243,7 @@ int lw2::Task4inputL(double& l) {
 
     return NO_EXCEPTION;
 }
+
 TriangleParams lw2::Task4main(int n, double l) {
     TriangleParams triangle;
 
@@ -247,22 +252,22 @@ TriangleParams lw2::Task4main(int n, double l) {
 
     switch (n) {
     case 1:
-        triangle.area = l * l;
-        break;
-    case 2:
         triangle.area = l * l * 0.5;
         break;
+    case 2:
+        triangle.area = l * l * 0.25;
+        break;
     case 3:
-        triangle.area = l * l * 2;
+        triangle.area = l * l;
         break;
     case 4:
         triangle.area = l;
         break;
     }
 
-    triangle.leg = sqrt(triangle.area);
-    triangle.hypothenus = sqrt(triangle.area * 2);
-    triangle.height = triangle.hypothenus * 0.5;
+    triangle.leg = sqrt(triangle.area * 2);
+    triangle.hypotenus = sqrt(triangle.area) * 2;
+    triangle.height = triangle.hypotenus * 0.5;
 
     return triangle;
 }

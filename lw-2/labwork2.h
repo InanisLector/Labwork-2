@@ -3,13 +3,13 @@
 
 struct TriangleParams {
     double leg;
-    double hypothenus;
+    double hypotenus;
     double height;
     double area;
 
     TriangleParams() {
         leg = 0;
-        hypothenus = 0;
+        hypotenus = 0;
         height = 0;
         area = 0;
     }
@@ -19,32 +19,34 @@ struct Triangle : TriangleParams {
     Triangle() : TriangleParams() { }
 
     Triangle(int n, double l) : TriangleParams() {
+        TriangleParams triangle;
+
         if (l == 0)
             return;
 
         switch (n) {
         case 1:
-            area = l * l;
+            triangle.area = l * l * 0.5;
             break;
         case 2:
-            area = l * l * 0.5;
+            triangle.area = l * l * 0.25;
             break;
         case 3:
-            area = l * l * 2;
+            triangle.area = l * l;
             break;
         case 4:
-            area = l;
+            triangle.area = l;
             break;
         }
 
-        leg = sqrt(area);
-        hypothenus = sqrt(area * 2);
-        height = sqrt(area * 0.5);
+        triangle.leg = sqrt(triangle.area * 2);
+        triangle.hypotenus = sqrt(triangle.area) * 2;
+        triangle.height = triangle.hypotenus * 0.5;
     }
 
     Triangle(TriangleParams modelTriangle) : TriangleParams() {
         leg = modelTriangle.leg;
-        hypothenus = modelTriangle.hypothenus;
+        hypotenus = modelTriangle.hypotenus;
         height = modelTriangle.height;
         area = modelTriangle.area;
     }

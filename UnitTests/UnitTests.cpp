@@ -105,7 +105,7 @@ namespace UnitTests
 			b = 2;
 			c = -2;
 			lw2::Task3main(a, b, c);
-			Assert::IsTrue(a <= b && b <= c);
+			Assert::IsTrue(a >= b && b >= c);
 		}
 
 		TEST_METHOD(TestMethod2)
@@ -115,7 +115,7 @@ namespace UnitTests
 			b = 0;
 			c = -2;
 			lw2::Task3main(a, b, c);
-			Assert::IsTrue(a <= b && b <= c);
+			Assert::IsTrue(a >= b && b >= c);
 		}
 
 		TEST_METHOD(TestMethod3)
@@ -125,7 +125,7 @@ namespace UnitTests
 			b = -0.2314;
 			c = 0;
 			lw2::Task3main(a, b, c);
-			Assert::IsTrue(a <= b && b <= c);
+			Assert::IsTrue(a >= b && b >= c);
 		}
 
 		TEST_METHOD(TestMethod4)
@@ -135,7 +135,7 @@ namespace UnitTests
 			b = 1;
 			c = -1;
 			lw2::Task3main(a, b, c);
-			Assert::IsTrue(a <= b && b <= c);
+			Assert::IsTrue(a >= b && b >= c);
 		}
 
 		TEST_METHOD(TestMethod5)
@@ -145,7 +145,7 @@ namespace UnitTests
 			b = 2;
 			c = 1;
 			lw2::Task3main(a, b, c);
-			Assert::IsTrue(a <= b && b <= c);
+			Assert::IsTrue(a >= b && b >= c);
 		}
 	};
 	TEST_CLASS(Task4UnitTests) 
@@ -158,9 +158,9 @@ namespace UnitTests
 			TriangleParams triangle = lw2::Task4main(n, l);
 
 			bool validation = (triangle.leg - 1) < EPSILON;
-			validation &= (triangle.hypothenus - 1.41421) < EPSILON;
+			validation &= (triangle.hypotenus - 1.41421) < EPSILON;
 			validation &= (triangle.height - 0.70710) < EPSILON;
-			validation &= (triangle.area - 1) < EPSILON;
+			validation &= (triangle.area - 0.5) < EPSILON;
 
 			Assert::IsTrue(validation);
 		}
@@ -172,9 +172,9 @@ namespace UnitTests
 			TriangleParams triangle = lw2::Task4main(n, l);
 
 			bool validation = (triangle.leg - 1.41421) < EPSILON;
-			validation &= (triangle.hypothenus - 2) < EPSILON;
+			validation &= (triangle.hypotenus - 2) < EPSILON;
 			validation &= (triangle.height - 1) < EPSILON;
-			validation &= (triangle.area - 2) < EPSILON;
+			validation &= (triangle.area - 1) < EPSILON;
 
 			Assert::IsTrue(validation);
 		}
@@ -186,9 +186,9 @@ namespace UnitTests
 			TriangleParams triangle = lw2::Task4main(n, l);
 
 			bool validation = (triangle.leg - 4.24264) < EPSILON;
-			validation &= (triangle.hypothenus - 6) < EPSILON;
+			validation &= (triangle.hypotenus - 6) < EPSILON;
 			validation &= (triangle.height - 3) < EPSILON;
-			validation &= (triangle.area - 18) < EPSILON;
+			validation &= (triangle.area - 9) < EPSILON;
 
 			Assert::IsTrue(validation);
 		}
@@ -199,9 +199,9 @@ namespace UnitTests
 			double l = 4;
 			TriangleParams triangle = lw2::Task4main(n, l);
 
-			bool validation = (triangle.leg - 2) < EPSILON;
-			validation &= (triangle.hypothenus - 2.82842) < EPSILON;
-			validation &= (triangle.height - 1.41421) < EPSILON;
+			bool validation = (triangle.leg - 2.82842) < EPSILON;
+			validation &= (triangle.hypotenus - 4) < EPSILON;
+			validation &= (triangle.height - 2) < EPSILON;
 			validation &= (triangle.area - 4) < EPSILON;
 
 			Assert::IsTrue(validation);
@@ -214,7 +214,7 @@ namespace UnitTests
 			TriangleParams triangle = lw2::Task4main(n, l);
 
 			bool validation = triangle.leg < EPSILON;
-			validation &= triangle.hypothenus < EPSILON;
+			validation &= triangle.hypotenus < EPSILON;
 			validation &= triangle.height < EPSILON;
 			validation &= triangle.area < EPSILON;
 
